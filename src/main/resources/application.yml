@@ -1,0 +1,40 @@
+
+spring:
+  application:
+    name: api-security-service
+  profiles:
+    active: dev
+#    active: prod
+
+  messages:
+    always-use-message-format: false
+    basename: messages/messages
+    encoding: UTF-8
+    fallback-to-system-locale: true
+  main:
+    web-application-type:
+
+#Open-api
+springdoc:
+  api-docs:
+    path: /events-docs
+
+#Prometheus
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, prometheus, loggers
+      base-path: /api/security/info
+  metrics:
+    enable:
+      jvm: true
+
+scheduler:
+  interval-in-cron-morning: 0 0 6 * * ?
+  interval-in-cron-evening: 0 0 18 * * ?
+
+

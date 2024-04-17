@@ -1,0 +1,50 @@
+server:
+  port: 8090
+  ip: localhost
+#Logging
+logging:
+  level:
+    root: info
+  file:
+    name: logs/serv.log
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${server.ip}:5432/postgres?currentSchema=event
+    username: postgres
+    password: postgrespw
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+  properties:
+    hibernate:
+      default_schema: event
+  flyway:
+    url: jdbc:postgresql://${server.ip}:5432/postgres
+    user: postgres
+    password: postgrespw
+    default-schema: event
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://${server.ip}:28080/realms/i113_realm
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://${server.ip}:8761/eureka
+
+  instance:
+    status-page-url-path: api/events/actuator/info
+    health-check-url-path: api/events/actuator/health
+#    instance-id: "${spring.application.name}:${random.uuid}"
+
+services:
+  api: http://${server.ip}:8080/
+  telegram:
+    default-url: /api/telbot/
+    message:
+      headerBirthdays: Today's Birthdays
+      headerEvents: Today's Events
