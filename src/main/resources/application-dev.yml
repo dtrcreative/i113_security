@@ -6,11 +6,11 @@ logging:
   level:
     root: info
   file:
-    name: logs/serv.log
+    name: logs/security/security.log
 
 spring:
   datasource:
-    url: jdbc:postgresql://${server.ip}:5432/postgres?currentSchema=event
+    url: jdbc:postgresql://${server.ip}:5432/postgres?currentSchema=auth
     username: postgres
     password: postgrespw
     driver-class-name: org.postgresql.Driver
@@ -19,32 +19,31 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
   properties:
     hibernate:
-      default_schema: event
+      default_schema: auth
   flyway:
     url: jdbc:postgresql://${server.ip}:5432/postgres
     user: postgres
     password: postgrespw
-    default-schema: event
-  security:
-    oauth2:
-      resource-server:
-        jwt:
-          issuer-uri: http://${server.ip}:28080/realms/i113_realm
+    default-schema: auth
+#  security:
+#    oauth2:
+#      resource-server:
+#        jwt:
+#          issuer-uri: http://${server.ip}:28080/realms/i113_realm
 
-eureka:
-  client:
-    service-url:
-      default-zone: http://${server.ip}:8761/eureka
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://${server.ip}:8761/eureka
 
   instance:
-    status-page-url-path: api/events/actuator/info
-    health-check-url-path: api/events/actuator/health
+    status-page-url-path: api/auth/actuator/info
+    health-check-url-path: api/auth/actuator/health
+  main:
+    allow-bean-definition-overriding: true
 #    instance-id: "${spring.application.name}:${random.uuid}"
+jwt:
+  header: Authorization
+  secret: proselyte
+  expiration: 18000
 
-services:
-  api: http://${server.ip}:8080/
-  telegram:
-    default-url: /api/telbot/
-    message:
-      headerBirthdays: Today's Birthdays
-      headerEvents: Today's Events
