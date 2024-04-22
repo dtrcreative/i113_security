@@ -13,8 +13,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AdminDto {
 
-    private int id;
+    private String id;
     private String username;
+    private String firstname;
+    private String lastname;
     private String email;
     private Role role;
     private Status status;

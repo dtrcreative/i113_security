@@ -16,6 +16,8 @@ public class AdminConverter {
         return AdminDto.builder()
                 .id(entity.getId())
                 .username(entity.getUsername())
+                .firstname(entity.getFirstname())
+                .lastname(entity.getLastname())
                 .email(entity.getEmail())
                 .status(entity.getStatus())
                 .role(entity.getRole())

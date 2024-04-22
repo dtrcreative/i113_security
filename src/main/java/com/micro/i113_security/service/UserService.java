@@ -23,13 +23,12 @@ public class UserService {
     }
 
     public UserDto save(UserDto input) {
-        UserEntity savedEntity = new UserEntity();
         try {
             usersRepository.save(converter.convertToEntity(input));
         } catch (Exception e) {
-            throw new AuthUserException("existing username or email", HttpStatus.BAD_REQUEST);
+            throw new AuthUserException("UserName or Email already exist", HttpStatus.CONFLICT);
         }
-        return converter.convertToDto(savedEntity);
+        return converter.convertToDto(new UserEntity());
     }
 
     public void delete(String userName) {

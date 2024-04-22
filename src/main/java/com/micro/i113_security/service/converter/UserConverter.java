@@ -21,6 +21,8 @@ public class UserConverter {
     public UserEntity convertToEntity(UserDto dto) {
         return UserEntity.builder()
                 .username(dto.getUsername())
+                .firstname(dto.getFirstname())
+                .lastname(dto.getLastname())
                 .password(new BCryptPasswordEncoder(12).encode(dto.getPassword()))
                 .email(dto.getEmail())
                 .role(Role.USER)

@@ -1,6 +1,7 @@
 package com.micro.i113_security.appconfig;
 
 import com.micro.i113_security.exception.JwtAuthenticationException;
+import com.micro.i113_security.model.entity.UserEntity;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,9 +40,14 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String userName, String role) {
-        Claims claims = Jwts.claims().setSubject(userName);
-        claims.put("role", role);
+    public String createToken(UserEntity user) {
+        Claims claims = Jwts.claims().setSubject(user.getUsername());
+        claims.put("uuid", user.getId());
+        claims.put("role", user.getRole());
+        claims.put("status", user.getStatus());
+        claims.put("email", user.getEmail());
+        claims.put("firstname", user.getFirstname());
+        claims.put("lastname", user.getLastname());
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMiliseconds * 1000);
 

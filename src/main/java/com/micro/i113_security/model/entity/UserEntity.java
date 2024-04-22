@@ -19,10 +19,12 @@ import java.sql.Timestamp;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    String id;
 
     String username;
+    String firstname;
+    String lastname;
     String email;
     String password;
 

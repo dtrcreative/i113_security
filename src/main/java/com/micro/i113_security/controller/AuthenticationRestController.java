@@ -39,11 +39,11 @@ public class AuthenticationRestController {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
             UserEntity user = userService.findUserByUserName(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-            String token = jwtTokenProvider.createToken(request.getUsername(), user.getRole().name());
+            String token = jwtTokenProvider.createToken(user);
             Map<Object, Object> response = new HashMap<>();
-            response.put("username", request.getUsername());
-            response.put("user_role", user.getRole());
-            response.put("user_status", user.getStatus());
+//            response.put("username", request.getUsername());
+//            response.put("user_role", user.getRole());
+//            response.put("user_status", user.getStatus());
             response.put("token", token);
             return ResponseEntity.ok(response);
         } catch (AuthenticationException e) {

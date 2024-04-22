@@ -9,6 +9,8 @@ logging:
     name: logs/security/security.log
 
 spring:
+  application:
+    name: security-service
   datasource:
     url: jdbc:postgresql://${server.ip}:5432/postgres?currentSchema=auth
     username: postgres
@@ -30,17 +32,18 @@ spring:
 #      resource-server:
 #        jwt:
 #          issuer-uri: http://${server.ip}:28080/realms/i113_realm
-
-#eureka:
-#  client:
-#    service-url:
-#      default-zone: http://${server.ip}:8761/eureka
-
   instance:
     status-page-url-path: api/auth/actuator/info
     health-check-url-path: api/auth/actuator/health
   main:
     allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://${server.ip}:8761/eureka
+
+
 #    instance-id: "${spring.application.name}:${random.uuid}"
 jwt:
   header: Authorization
