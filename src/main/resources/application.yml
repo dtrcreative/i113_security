@@ -3,8 +3,8 @@ spring:
   application:
     name: api-security-service
   profiles:
-    active: dev
-#    active: prod
+#    active: dev
+    active: prod
 
   messages:
     always-use-message-format: false
@@ -33,8 +33,5 @@ management:
     enable:
       jvm: true
 
-scheduler:
-  interval-in-cron-morning: 0 0 6 * * ?
-  interval-in-cron-evening: 0 0 18 * * ?
 
 

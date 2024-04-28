@@ -20,14 +20,14 @@ jobs:
         with: 
           clean: 'false'
 
-      - name: Maven Events clean-build
+      - name: Maven Security clean-build
         run : |
           mvn clean
           mvn install  
 
-      - name: Docker Events update
+      - name: Docker Security update
         run : |
-          bash i113_events_update.sh   
+          bash i113_security_update.sh   
 
       - name: Docker Compose up
         run : |
