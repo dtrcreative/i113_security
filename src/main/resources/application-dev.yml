@@ -43,8 +43,6 @@ eureka:
     service-url:
       default-zone: http://${server.ip}:8761/eureka
 
-
-#    instance-id: "${spring.application.name}:${random.uuid}"
 jwt:
   header: Authorization
   secret: proselyte
