@@ -1,0 +1,4 @@
+FROM openjdk:17 as build
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} I113SecurityApplication.jar
+ENTRYPOINT ["java","-jar","I113SecurityApplication.jar"]

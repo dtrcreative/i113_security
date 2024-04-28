@@ -49,7 +49,7 @@ public class JwtTokenProvider {
         claims.put("firstname", user.getFirstname());
         claims.put("lastname", user.getLastname());
         Date now = new Date();
-        Date validity = new Date(now.getTime() + validityInMiliseconds * 1000);
+        Date validity = new Date(now.getTime() + validityInMiliseconds*1000);
 
         return Jwts.builder()
                 .setClaims(claims)

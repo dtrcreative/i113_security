@@ -48,5 +48,6 @@ eureka:
 jwt:
   header: Authorization
   secret: proselyte
-  expiration: 18000
+  #expiration: 18000 #5h 300m
+  expiration: 900 #15m
 
