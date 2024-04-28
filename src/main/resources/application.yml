@@ -1,10 +1,10 @@
 
 spring:
   application:
-    name: api-security-service
+    name: security-service
   profiles:
-#    active: dev
-    active: prod
+    active: dev
+#    active: prod
 
   messages:
     always-use-message-format: false
@@ -17,7 +17,7 @@ spring:
 #Open-api
 springdoc:
   api-docs:
-    path: /events-docs
+    path: /security-docs
 
 #Prometheus
 management:

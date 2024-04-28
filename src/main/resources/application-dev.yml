@@ -9,8 +9,6 @@ logging:
     name: logs/security/security.log
 
 spring:
-  application:
-    name: security-service
   datasource:
     url: jdbc:postgresql://${server.ip}:5432/postgres?currentSchema=auth
     username: postgres
@@ -43,6 +41,8 @@ eureka:
     service-url:
       default-zone: http://${server.ip}:8761/eureka
 
+
+#    instance-id: "${spring.application.name}:${random.uuid}"
 jwt:
   header: Authorization
   secret: proselyte
